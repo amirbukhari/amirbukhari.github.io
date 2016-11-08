@@ -10,58 +10,24 @@ body
 {
 	background-color:black;
 }
-#title
+#stars
 {
-	text-align:center;
 	height:100vh;
+	background-color:#6c6;
 }
-#title h1
+
+#myCanvas
 {
-	margin-top:0.5em;
-	
-}
-#title h3
-{
-	color:lightblue;
-	
+height:100vh;
+width:100%;
 }
 h1
 {
-	font-family: 'Bungee Hairline', cursive;
+font-family: 'Bungee Hairline', cursive;
 	text-align:center;
 	color:white;
 	font-size:10em;
-	font-weight:bold;
 }
 
 #canvas-wrap { position:relative } /* Make this a positioned parent */
 #overlay     { position:absolute; top:20px; left:300px; }
-
-video#bgvid { 
-    position: fixed;
-    top: 50%;
-    left: 50%;
-   
-    width: 100%;
-    height: auto;
-    z-index: -100;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-   
-}
-
-.fadeArea{
-  background-color:#4d9999;
-  padding-top:50px;
-  height:100vh;
-  text-align:center;
-  color:#B5E1E1;
-}
-
-.fadeArea p{
-  background-color:rgba(124, 192, 192,0.5);
- 
-  padding:50px;
-}

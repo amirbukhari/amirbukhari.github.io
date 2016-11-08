@@ -33,16 +33,18 @@ ctx.fillStyle = "#FFF";
 window.onload = function() {
 	// var canvas = document.getElementById("myCanvas");
     //var context = canvas.getContext("2d");
-	 
+	var images = new Array();
+	for(i = 0 ; i < 5; i ++)
+	{
 		var imageObj = new Image();
-		imageObj.onload = function() {
+		images.push(imageObj);
+	
+		images[i].onload = function() {
 			ctx.drawImage(imageObj, 0, 0,canvas.width,canvas.height);
-			
 		};
-		imageObj.src = "workingFolder/Whale/colorWhale.jpg";
-
-		
-		
+		images[4].src = "js/whale.jpg";
+	}
+	
 	
 	//alert(images[0].src);
 	
