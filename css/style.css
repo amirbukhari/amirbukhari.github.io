@@ -31,7 +31,7 @@ h1
 	text-align:center;
 	color:white;
 	font-size:10em;
-	font-weight:bold;
+	font-weight:700;
 }
 
 #canvas-wrap { position:relative } /* Make this a positioned parent */
@@ -53,7 +53,8 @@ video#bgvid {
 }
 
 .fadeArea{
-  background-color:#4d9999;
+
+  background-color:rgba(77, 153, 153,0.7);
   padding-top:50px;
   height:100vh;
   text-align:center;
@@ -61,7 +62,13 @@ video#bgvid {
 }
 
 .fadeArea p{
-  background-color:rgba(124, 192, 192,0.5);
+  background-color:rgba(124, 192, 192,0.7);
  
   padding:50px;
 }
+
+#Two  p{
+ background-color:rgba(252, 199, 47,0.4);
+}
+
+
