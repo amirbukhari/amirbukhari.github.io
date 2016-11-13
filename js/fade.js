@@ -11,7 +11,7 @@ $(window).scroll(function(){
   var windowHeight = $(this).height();
   var windowScrollTop = $(this).scrollTop();
   
-  var toFade = ["One", "Two", "Three"];
+  var toFade = ["One", "Two", "Three","Four"];
 
   for( i = 0; i <toFade.length; i ++)
     {
