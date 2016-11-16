@@ -78,7 +78,7 @@ video#bgvid {
 
   background-color:rgba(77, 153, 153,0.7);
   padding-top:50px;
-  height:100vh;
+  min-height:100vh;
   text-align:center;
   color:#B5E1E1;
 }
@@ -93,4 +93,28 @@ video#bgvid {
  background-color:rgba(252, 199, 47,0.4);
 }
 
+@keyframes circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+}
+
+@keyframes inner-circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(-360deg); }
+}
+
+#rotator {
+   width:650px;
+    height:650px;
+    margin:20px auto;
+    font-size:10px;
+    line-height:1;
+    animation: circle 25s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+#rotator > div {
+    animation: inner-circle 25s linear infinite;
+
+}
 
