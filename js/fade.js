@@ -6,8 +6,8 @@ $("document").ready(function(){
 
     for (var i = 0; i < block.length; i++) {
         var elem = block[i];
-        x = 280 * Math.cos(angle) + 300;
-        y = 280 * Math.sin(angle) + 300;
+        x = 300 * Math.cos(angle) + 270;
+        y = 300 * Math.sin(angle) + 270;
         elem.style.position = 'absolute';
         elem.style.left = x + 'px';
         elem.style.top = y + 'px';

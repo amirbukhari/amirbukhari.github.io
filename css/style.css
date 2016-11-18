@@ -46,6 +46,7 @@ h1
 	font-size:10em;
 	font-weight:700;
 }
+
 a {
    outline: 0;
 }
@@ -117,4 +118,7 @@ video#bgvid {
     animation: inner-circle 25s linear infinite;
 
 }
+#rotator img:hover {
+    background-color:rgba(73, 139, 244,0.8);
 
+}
