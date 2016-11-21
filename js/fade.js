@@ -1,6 +1,6 @@
 $("document").ready(function(){
     //arrange blocks in a circle
-    var block = $("#rotator div").get(),
+    var block = $("#rotator div").not(".rotatorCenter").get(),
     increase = Math.PI * 2 / block.length,
     x = 0, y = 0, angle = 0;
 
@@ -14,7 +14,6 @@ $("document").ready(function(){
         var rot = 90 + (i * (360 / block.length));        
         angle += increase;
     }
-
 });
 
 
@@ -67,3 +66,10 @@ $(function() {
         event.preventDefault();
 	});
 });
+
+
+$("#rotator .col-md-2").hover(function()
+{
+	$(this).toggleClass("rotatorCenter");
+});
+
