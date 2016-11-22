@@ -1,6 +1,6 @@
 $("document").ready(function(){
     //arrange blocks in a circle
-    var block = $("#rotator div").not(".rotatorCenter").get(),
+    var block = $("#rotator div").get(),
     increase = Math.PI * 2 / block.length,
     x = 0, y = 0, angle = 0;
 
@@ -17,27 +17,27 @@ $("document").ready(function(){
 });
 
 
-$(".col-md-6").css('display','none');
+$('*[class^="col"]').css('display','none');
 $(".btn-primary").css('display','none');
-$("h1").css('display','none');
-$("nav").css('display','none');
+$("#title h1").css('display','none');
 
-$("h1").slideToggle(2000);  
-$("nav").slideToggle(2000); 
+$("#title h1").slideToggle(2000);   
 $(".btn-primary").slideToggle();
 $(window).scroll(function(){
 	var windowWidth = $(this).width();
 	var windowHeight = $(this).height();
 	var windowScrollTop = $(this).scrollTop();
 	
-	var toFade = ["One", "Two", "Three","Four"];
+	var toFade = ["One", "Two", "Three","Four","Five"];
 	
 	for( i = 0; i <toFade.length; i ++)
     {
 		if(windowScrollTop>$("#"+toFade[i]).position().top -47 && !( $("#"+toFade[i]).children().children().children(".col-md-6").hasClass("Viewed")))
 		{
-			$("#"+toFade[i]).children().children().children(".col-md-6").addClass("Viewed");
-			$("#"+toFade[i]).children().children().children(".col-md-6").fadeToggle();
+			$("#"+toFade[i]).children().children().children('*[class^="col"]').addClass("Viewed");
+			if ($("#"+toFade[i]).children().children().children('*[class^="col"]').is(":visible") == false) {
+				$("#"+toFade[i]).children().children().children('*[class^="col"]').fadeToggle();
+			}
 		} 
 	}
 	
@@ -62,13 +62,13 @@ $(function() {
         var $anchor = $(this);
         $('html, body').stop().animate({
             scrollTop: $($anchor.attr('href')).offset().top
-		}, 1500, 'easeInOutExpo');
+		}, 2000, 'easeInOutExpo');
         event.preventDefault();
 	});
 });
 
 
-$("#rotator .col-md-2").hover(function()
+$("#rotator .col-xs-2").hover(function()
 {
 	$(this).toggleClass("rotatorCenter");
 });

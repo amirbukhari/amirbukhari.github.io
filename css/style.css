@@ -10,6 +10,9 @@ body
 {
 	background-color:black;
 }
+p{
+		color:white;
+}
 #title
 {
 	text-align:center;
@@ -89,17 +92,33 @@ video#bgvid {
  
   padding:50px;
 }
-
-#Two  p{
+#Two{
+	 background-color:rgba(252, 199, 47,0);
+}
+#Three  p{
  background-color:rgba(252, 199, 47,0.4);
 }
-#Three{
+
+
+.portfolioItem { 
+   position: relative; 
+  
+}
+
+.portfolioItem h3 { 
+   position: absolute; 
+   top: 10px; 
+color:white;
+   margin: 0 auto;
+   background-color:rgba(77, 153, 153,1);
+}
+#Four{
 	 background-color:rgba(255, 255, 255,1);
 	
 	color:black;
 }
 
-#Three h1{
+#Four h1{
 	
 	 color:black;
 	
