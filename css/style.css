@@ -18,6 +18,7 @@ p{
 	text-align:center;
 	display: table;
 	height:100vh;
+
 }
 #title h1
 {
@@ -75,7 +76,12 @@ video#bgvid {
     transform: translateX(-50%) translateY(-50%);
     background: url(polina.jpg) no-repeat;
     background-size: cover; 
-   
+	-webkit-filter: blur(10px);
+	-moz-filter: blur(10px);
+	-o-filter: blur(10px);
+	-ms-filter: blur(10px);
+	filter: blur(10px);
+	   
 }
 
 .fadeArea{
@@ -129,9 +135,12 @@ color:white;
 }
 
 @keyframes inner-circle {
-    from { transform:rotate(0deg); }
-    to { transform:rotate(-360deg); }
+    from {transform: rotate(360deg);}
+    
+	to { 
+    transform: rotate(0deg); }
 }
+
 
 #rotator {
    width:650px;
@@ -139,15 +148,23 @@ color:white;
     margin:20px auto;
     font-size:10px;
     line-height:1;
-    animation: circle 25s linear infinite;
     transform-origin: 50% 50%;
+	 
+	
 }
 
-#rotator > div {
-    animation: inner-circle 25s linear infinite;
-
+#rotatorInner{
+    animation: inner-circle 60s linear  infinite;
 }
-
+#rotatorOuter{
+     width:650px;
+    height:650px;
+    margin:20px auto;
+    font-size:10px;
+    line-height:1;
+   
+	  animation: circle 60s linear infinite;
+}
 
 /* Standard syntax */
 
