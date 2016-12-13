@@ -94,9 +94,25 @@ video#bgvid {
 }
 
 .fadeArea p{
-  background-color:rgba(124, 192, 192,0.7);
+ /* background-color:rgba(124, 192, 192,0.7);
  
-  padding:50px;
+  padding:50px;*/
+}
+
+.contentContainer
+{
+	background-color:rgba(124, 192, 192,0.7);
+	padding:50px;
+}
+.contentContainer img
+{
+	max-height:100px;
+	margin: 0 auto;
+}
+.workMargin
+{
+	margin:50px;
+	
 }
 #Two{
 	 background-color:rgba(252, 199, 47,0);
