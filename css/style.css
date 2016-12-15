@@ -136,7 +136,8 @@ color:white;
 }
 #Four{
 	 background-color:rgba(255, 255, 255,1);
-	
+	min-height:initial;
+
 	color:black;
 }
 
