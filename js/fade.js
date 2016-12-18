@@ -16,12 +16,12 @@ $("document").ready(function(){
 					}
 });
 
-$('*[class^="col"]').css('display','none');
-$(".btn").css('display','none');
+$('*[class^="col"]').not('*[class^="collapse"]').css('display','none');
+//$(".btn").css('display','none');
 $("#title h1").css('display','none');
 
 $("#title h1").slideToggle(2000);   
-$(".btn").slideToggle();
+//$(".btn").slideToggle();
 $(window).scroll(function(){
 	var windowWidth = $(this).width();
 	var windowHeight = $(this).height();
