@@ -20,7 +20,7 @@ $('*[class^="col"]').not('*[class^="collapse"]').css('display','none');
 //$(".btn").css('display','none');
 $("#title h1").css('display','none');
 
-$("#title h1").slideToggle(2000);   
+$("#title h1").slideToggle(1000);   
 //$(".btn").slideToggle();
 $(window).scroll(function(){
 	var windowWidth = $(this).width();
@@ -36,7 +36,7 @@ $(window).scroll(function(){
 			$("#"+toFade[i]).children().children().children('*[class^="col"]').addClass("Viewed");
 			if ($("#"+toFade[i]).children().children().children('*[class^="col"]').is(":visible") == false) {
 				if(toFade[i] == "Two"){
-					$("#"+toFade[i]).children().children().children('*[class^="col"]').slideToggle(1500);
+					$("#"+toFade[i]).children().children().children('*[class^="col"]').slideToggle(1000);
 					$("#"+toFade[i]).children().children().children('*[class^="col"]').attr('id','rotatorInner');
 					$("#"+toFade[i]).children().children().attr('id','rotatorOuter');
 					
