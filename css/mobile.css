@@ -9,6 +9,7 @@
 body
 {
 	background-color:black;
+	overflow-x:hidden;
 }
 p{
 		color:white;
@@ -62,6 +63,29 @@ a:hover, a:active, a:focus {
 #overlay     { position:absolute; top:20px; left:300px; }
 
 video#bgvid { 
+     /*position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(../images/background.jpg) no-repeat;
+    background-size: cover; 
+	-webkit-filter: blur(10px);
+	-moz-filter: blur(10px);
+	-o-filter: blur(10px);
+	-ms-filter: blur(10px);
+	filter: blur(10px);*/
+	display:none;
+
+}
+#bgImg{ 
      position: fixed;
     top: 50%;
     left: 50%;
@@ -74,7 +98,7 @@ video#bgvid {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(images/background.jpg) no-repeat;
+    background: url(../images/background.jpg) no-repeat;
     background-size: cover; 
 	-webkit-filter: blur(10px);
 	-moz-filter: blur(10px);
@@ -83,7 +107,6 @@ video#bgvid {
 	filter: blur(10px);
 
 }
-
 .fadeArea{
   background-color:rgba(77, 153, 153,0.7);
   padding-top:50px;
