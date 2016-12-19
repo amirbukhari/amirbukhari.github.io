@@ -1,0 +1,35 @@
+
+#title h1
+{
+
+	font-size:8em;
+	
+	
+}
+
+
+h1
+{
+
+	font-size:7em;
+	font-weight:700;
+}
+
+
+.contentContainer
+{
+	
+	padding:50px;
+
+}
+
+.workMargin
+{
+	margin:50px;
+
+}
+#Two{
+	
+	 
+	 height:auto;/*Added*/
+}

@@ -81,3 +81,17 @@ $("#rotator .col-xs-2").hover(function()
 	$(this).toggleClass("rotatorCenter");
 });
 
+$(".portfolioItem").hover(function()
+{
+	$(this).find("h3").fadeOut(500);
+}, function() {
+    $( this ).find("h3").fadeIn(500);
+  });
+
+
+
+
+
+
+
+

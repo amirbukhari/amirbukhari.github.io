@@ -74,14 +74,14 @@ video#bgvid {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(polina.jpg) no-repeat;
+    background: url(images/background.jpg) no-repeat;
     background-size: cover; 
 	-webkit-filter: blur(10px);
 	-moz-filter: blur(10px);
 	-o-filter: blur(10px);
 	-ms-filter: blur(10px);
 	filter: blur(10px);
-	   
+
 }
 
 .fadeArea{
@@ -111,6 +111,8 @@ video#bgvid {
 }
 #Two{
 	 background-color:rgba(252, 199, 47,0);
+	 overflow:hidden;/*Added*/
+	 height:50vh;/*Added*/
 }
 #Three  p{
  background-color:rgba(252, 199, 47,0.4);
@@ -125,9 +127,11 @@ video#bgvid {
 .portfolioItem h3 { 
    position: absolute; 
    top: 10px; 
-   color:white;
+   color:black;
    margin: 0 auto;
-   background-color:rgba(77, 153, 153,1);
+   margin-right:15px;
+   padding:10px 10px;
+   background-color:rgba(255, 255, 255,0.7);
 }
 #Four{
 	 background-color:rgba(255, 255, 255,1);
@@ -155,14 +159,14 @@ video#bgvid {
 
 
 #rotator {
-   width:650px;
+    width:650px;
     height:650px;
     margin:20px auto;
     font-size:10px;
     line-height:1;
     transform-origin: 50% 50%;
 	 
-	
+
 }
 
 #rotatorInner{
