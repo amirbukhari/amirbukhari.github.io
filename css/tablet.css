@@ -79,3 +79,49 @@ video#bgvid {
 	display:none;
 
 }
+
+@keyframes circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+}
+
+@keyframes inner-circle {
+    from {transform: rotate(360deg);}
+    
+	to { 
+    transform: rotate(0deg); }
+}
+
+
+#rotator {
+    width:650px;
+    height:650px;
+    margin:20px auto;
+    font-size:10px;
+    line-height:1;
+    transform-origin: 50% 50%;
+	 
+
+}
+
+#rotatorInner{
+    animation: inner-circle 60s linear  infinite;
+}
+#rotatorOuter{
+     width:650px;
+    height:650px;
+    margin:20px auto;
+    font-size:10px;
+    line-height:1;
+   
+	  animation: circle 60s linear infinite;
+}
+
+/* Standard syntax */
+
+.rotatorCenter {
+     width: 150px;
+	transition: 0.3s all ease;
+	z-index:1000;
+	
+}

@@ -1,11 +1,15 @@
-html{
-		overflow-x:hidden;/*Added*/
-		max-width:100%;/*Added*/
-}
+/*body
+{
+	background: url(https://scontent-yyz1-1.xx.fbcdn.net/t31.0-8/10504987_10152250933927252_5745679057594920072_o.jpg) no-repeat center center fixed;
+	 -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
 body
 {
 	background-color:black;
-	overflow-x:hidden;
+	
 }
 p{
 		color:white;
@@ -130,11 +134,8 @@ video#bgvid {
 }
 #Two{
 	 background-color:rgba(252, 199, 47,0);
-	 overflow:hidden;/*Added*/
-	 overflow-x:hidden;/*Added*/
-	 overflow-y:hidden;/*Added*/
-	 width:100%;
-	 height:50vh;/*Added*/
+
+
 }
 #Three  p{
  background-color:rgba(252, 199, 47,0.4);
@@ -167,51 +168,7 @@ video#bgvid {
 	 color:black;
 	
 }
-@keyframes circle {
-    from { transform:rotate(0deg); }
-    to { transform:rotate(360deg); }
-}
 
-@keyframes inner-circle {
-    from {transform: rotate(360deg);}
-    
-	to { 
-    transform: rotate(0deg); }
-}
-
-
-#rotator {
-    width:650px;
-    height:650px;
-    margin:20px auto;
-    font-size:10px;
-    line-height:1;
-    transform-origin: 50% 50%;
-	 
-
-}
-
-#rotatorInner{
-    animation: inner-circle 60s linear  infinite;
-}
-#rotatorOuter{
-     width:650px;
-    height:650px;
-    margin:20px auto;
-    font-size:10px;
-    line-height:1;
-   
-	  animation: circle 60s linear infinite;
-}
-
-/* Standard syntax */
-
-.rotatorCenter {
-     width: 150px;
-	transition: 0.3s all ease;
-	z-index:1000;
-	
-}
 
 .btn {
     background-color: #4CAF50; /* Green */
