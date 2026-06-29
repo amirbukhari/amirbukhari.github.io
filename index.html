@@ -1,67 +1,105 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <title>Amir Bukhari</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Amir Bukhari — Software Engineer</title>
-  <meta name="description" content="Amir Bukhari is a Lead Software Engineer based in Oakville, Ontario.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Amir Bukhari — Lead Software Engineer based in Oakville, Ontario.">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0f1117;
-      --bg2: #161b27;
-      --bg3: #1e2535;
-      --accent: #7c6fff;
-      --accent2: #5b51d8;
-      --text: #e8eaf0;
-      --text-muted: #8b92a5;
-      --border: #2a3045;
-      --radius: 12px;
-      --nav-h: 64px;
+      --teal:       #6db9b9;
+      --teal-dark:  #4d9999;
+      --teal-glass: rgba(77,153,153,0.75);
+      --teal-light: rgba(124,192,192,0.7);
+      --white-20:   rgba(255,255,255,0.2);
+      --white-70:   rgba(255,255,255,0.7);
+      --nav-h: 60px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      background: var(--teal);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; outline: none; }
+    a:focus { outline: none; }
+    img { max-width: 100%; display: block; }
+    p { line-height: 1.7; }
+
+    /* ── Loader ── */
+    #loader {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--teal); z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-ring {
+      width: 80px; height: 80px;
+      border: 6px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      filter: drop-shadow(0 0 12px #fff);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Background video/img ── */
+    #bg-video {
+      position: fixed; top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      transform: translate(-50%, -50%);
+      z-index: -2; object-fit: cover;
+    }
+    #bg-img {
+      position: fixed; inset: 0;
+      z-index: -1;
+      background: url('images/background.jpg') center/cover no-repeat;
+      filter: blur(8px) brightness(0.6);
     }
 
     /* ── Nav ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0;
       height: var(--nav-h);
       display: flex; align-items: center;
       padding: 0 2rem;
-      background: rgba(15,17,23,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(40,100,100,0.65);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      z-index: 100;
     }
     .nav-inner {
       max-width: 1100px; width: 100%; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      padding: 0.45rem 1.1rem; border-radius: 8px;
-      background: var(--accent); color: #fff !important;
-      font-size: 0.85rem !important; font-weight: 600 !important;
-      transition: background 0.2s !important;
+    .nav-brand {
+      font-family: 'Bungee Hairline', cursive;
+      font-weight: 700; font-size: 1.25rem;
+      text-shadow: 1px 1px 6px #fff;
+      letter-spacing: 0.05em;
     }
-    .nav-cta:hover { background: var(--accent2) !important; color: #fff !important; }
-
-    /* hamburger */
-    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+    .nav-links {
+      display: flex; gap: 1.75rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      opacity: 0.85; transition: opacity 0.2s, text-shadow 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; text-shadow: 1px 1px 8px #fff; }
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; }
 
     /* ── Hero ── */
     #hero {
@@ -69,239 +107,241 @@
       display: flex; align-items: center; justify-content: center;
       text-align: center;
       padding: calc(var(--nav-h) + 2rem) 2rem 4rem;
-      position: relative; overflow: hidden;
     }
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,111,255,0.18) 0%, transparent 70%);
-      pointer-events: none;
+    #hero h1 {
+      font-family: 'Bungee Hairline', cursive;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 700;
+      text-shadow: 2px 2px 12px rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
     }
-    .hero-content { max-width: 700px; position: relative; }
-    .hero-badge {
-      display: inline-block; margin-bottom: 1.5rem;
-      padding: 0.35rem 1rem; border-radius: 99px;
-      background: rgba(124,111,255,0.15); border: 1px solid rgba(124,111,255,0.35);
-      font-size: 0.8rem; font-weight: 600; color: var(--accent);
-      letter-spacing: 0.05em; text-transform: uppercase;
+    #hero h2 {
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      font-weight: 400; margin-top: 0.75rem;
+      opacity: 0.9; letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
-    .hero-name {
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 700; line-height: 1.1;
-      letter-spacing: -0.03em;
+    #hero p {
+      margin-top: 0.5rem;
+      opacity: 0.75; font-size: 1rem;
     }
-    .hero-title {
-      margin-top: 0.75rem;
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      font-weight: 400; color: var(--text-muted);
+    .hero-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.85rem 2.25rem;
+      border-radius: 6px;
+      background: rgba(8,135,240,0.4);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: background 0.2s, text-shadow 0.2s, transform 0.15s;
     }
-    .hero-title strong { color: var(--accent); font-weight: 600; }
-    .hero-sub { margin-top: 1rem; color: var(--text-muted); font-size: 1rem; }
-    .hero-actions { margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      padding: 0.75rem 1.75rem; border-radius: 10px;
-      background: var(--accent); color: #fff; text-decoration: none;
-      font-weight: 600; font-size: 0.95rem; transition: background 0.2s, transform 0.15s;
+    .hero-btn:hover {
+      background: rgba(8,135,240,0.65);
+      text-shadow: 1px 1px 10px #fff;
+      transform: translateY(-2px);
     }
-    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
-    .btn-secondary {
-      padding: 0.75rem 1.75rem; border-radius: 10px;
-      background: var(--bg3); color: var(--text); text-decoration: none;
-      font-weight: 600; font-size: 0.95rem; border: 1px solid var(--border);
-      transition: border-color 0.2s, transform 0.15s;
-    }
-    .btn-secondary:hover { border-color: var(--accent); transform: translateY(-1px); }
 
-    /* ── Shared section styles ── */
-    section { padding: 6rem 2rem; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+    /* ── Sections ── */
+    .section {
+      background: var(--teal-glass);
+      backdrop-filter: blur(6px);
+      padding: 5rem 2rem;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center;
     }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700;
-      letter-spacing: -0.02em; margin-bottom: 3rem;
+    .section-inner { max-width: 1000px; width: 100%; }
+    .section h1 {
+      font-family: 'Bungee Hairline', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      text-align: center;
+      text-shadow: 1px 1px 8px rgba(255,255,255,0.4);
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
     }
-    .section-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 3rem; }
 
     /* ── About ── */
-    #about { background: var(--bg2); }
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 3rem; align-items: start;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      align-items: start;
     }
     .about-photo {
-      width: 100%; aspect-ratio: 1;
-      border-radius: var(--radius);
-      object-fit: cover;
-      border: 2px solid var(--border);
+      width: 100%; border-radius: 12px;
+      border: 3px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     }
-    .about-photo-placeholder {
-      width: 100%; aspect-ratio: 1;
-      border-radius: var(--radius);
-      background: var(--bg3);
-      border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; color: var(--text-muted);
+    .about-text p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      opacity: 0.95;
     }
-    .about-text p { color: var(--text-muted); font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; }
-    .about-text p:last-child { margin-bottom: 0; }
-    .about-location {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      margin-top: 1.25rem;
-      font-size: 0.85rem; color: var(--text-muted);
-    }
-    .about-location svg { width: 14px; height: 14px; }
 
-    /* Work timeline */
-    .timeline { margin-top: 3rem; }
-    .timeline-item {
-      display: flex; gap: 1.5rem;
-      padding-bottom: 2rem;
-      position: relative;
+    /* Work history */
+    .work-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem; }
+    .work-item {
+      background: var(--teal-light);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.2s, transform 0.15s;
     }
-    .timeline-item:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      left: 19px; top: 40px;
-      width: 2px; bottom: 0;
-      background: var(--border);
-    }
-    .timeline-dot {
-      flex-shrink: 0;
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--bg3); border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; margin-top: 2px;
-    }
-    .timeline-body h3 { font-size: 1rem; font-weight: 600; }
-    .timeline-body .role { color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-top: 0.1rem; }
-    .timeline-body p { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.35rem; line-height: 1.6; }
+    .work-item:hover { background: rgba(124,192,192,0.85); transform: translateX(4px); }
+    .work-emoji { font-size: 1.5rem; line-height: 1; margin-top: 2px; flex-shrink: 0; }
+    .work-body h3 { font-size: 1rem; font-weight: 600; }
+    .work-body .role { font-size: 0.82rem; opacity: 0.75; margin-top: 0.2rem; }
+    .work-body p { font-size: 0.875rem; margin-top: 0.4rem; opacity: 0.85; }
 
     /* ── Skills ── */
-    #skills { background: var(--bg); }
+    #skills { min-height: auto; background: rgba(77,153,153,0.5); }
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
       gap: 1rem;
     }
     .skill-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 0.75rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 10px;
+      padding: 1rem 0.5rem;
       text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.2s;
       cursor: default;
     }
-    .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .skill-card img { width: 42px; height: 42px; object-fit: contain; margin-bottom: 0.6rem; }
-    .skill-card span { display: block; font-size: 0.7rem; color: var(--text-muted); font-weight: 500; }
+    .skill-card:hover { background: rgba(255,255,255,0.3); transform: translateY(-3px); }
+    .skill-card img { width: 36px; height: 36px; object-fit: contain; margin: 0 auto 0.5rem; }
+    .skill-card span { display: block; font-size: 0.65rem; font-weight: 500; opacity: 0.9; }
 
     /* ── Portfolio ── */
-    #portfolio { background: var(--bg2); }
+    #portfolio { min-height: auto; }
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
     }
-    .portfolio-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+    .port-card {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 10px;
       overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .portfolio-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .portfolio-card-img {
-      width: 100%; height: 160px;
-      object-fit: cover;
-      background: var(--bg2);
+    .port-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+    .port-card img {
+      width: 100%; height: 140px; object-fit: cover;
+      background: rgba(77,153,153,0.4);
     }
-    .portfolio-card-img-placeholder {
-      width: 100%; height: 160px;
-      background: linear-gradient(135deg, var(--bg) 0%, var(--bg3) 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; color: var(--border);
-    }
-    .portfolio-card-body { padding: 1.25rem; }
-    .portfolio-card-body h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem; }
-    .portfolio-card-body p { font-size: 0.78rem; color: var(--text-muted); }
-    .portfolio-tags { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag {
-      padding: 0.2rem 0.6rem; border-radius: 99px;
-      background: rgba(124,111,255,0.12); border: 1px solid rgba(124,111,255,0.25);
-      font-size: 0.7rem; font-weight: 500; color: var(--accent);
+    .port-card-body { padding: 1rem; }
+    .port-card-body h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .port-card-body p {
+      font-size: 0.72rem; opacity: 0.75;
+      background: rgba(252,199,47,0.4);
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.25rem;
     }
 
     /* ── Resume ── */
-    #resume { background: var(--bg); }
-    .resume-cta-box {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 3rem; text-align: center;
+    #resume {
+      background: #fff;
+      color: #222;
+      min-height: auto;
     }
-    .resume-cta-box p { color: var(--text-muted); margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-    .resume-embed { margin-top: 2rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
-    .resume-embed embed { display: block; }
+    #resume h1 { color: #222; }
+    .resume-btn {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem 2rem;
+      border-radius: 6px;
+      background: #4caf50; color: #fff;
+      font-weight: 600; font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .resume-btn:hover { background: #008cba; }
+    .resume-embed {
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
 
     /* ── Contact ── */
-    #contact { background: var(--bg2); }
+    #contact { min-height: auto; }
     .contact-box {
-      max-width: 500px; margin: 0 auto;
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem; text-align: center;
+      background: var(--teal-light);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      padding: 2.5rem;
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
     }
-    .contact-box p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
-    .contact-email {
-      font-size: 1rem; font-weight: 600;
-      color: var(--accent); text-decoration: none;
-      display: inline-block; margin-bottom: 1.5rem;
+    .contact-box h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 1.5rem; opacity: 0.9; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      background: rgba(8,135,240,0.4);
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 1rem; font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
     }
-    .contact-email:hover { text-decoration: underline; }
+    .contact-btn:hover { background: rgba(8,135,240,0.65); transform: translateY(-2px); }
 
     /* ── Footer ── */
     footer {
-      background: var(--bg); border-top: 1px solid var(--border);
-      padding: 2rem; text-align: center;
-      color: var(--text-muted); font-size: 0.8rem;
+      background: rgba(40,100,100,0.8);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      opacity: 0.8;
     }
-    footer a { color: var(--text-muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
 
     /* ── Responsive ── */
-    @media (max-width: 768px) {
+    @media (max-width: 700px) {
       .nav-links { display: none; }
       .nav-links.open {
         display: flex; flex-direction: column;
         position: absolute; top: var(--nav-h); left: 0; right: 0;
-        background: var(--bg2); border-bottom: 1px solid var(--border);
-        padding: 1rem 2rem 1.5rem; gap: 1rem;
+        background: rgba(40,100,100,0.95);
+        backdrop-filter: blur(14px);
+        padding: 1rem 2rem 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+        gap: 1rem;
       }
       .nav-toggle { display: flex; }
       .about-grid { grid-template-columns: 1fr; }
-      .about-photo-placeholder { max-width: 200px; }
-      section { padding: 4rem 1.25rem; }
+      .about-photo { max-width: 200px; margin: 0 auto; }
+      .section { padding: 4rem 1.25rem; }
     }
   </style>
 </head>
 <body>
 
+<div id="loader"><div class="loader-ring"></div></div>
+
+<video id="bg-video" autoplay muted loop playsinline>
+  <source src="images/lowQuality.mp4" type="video/mp4">
+</video>
+<div id="bg-img"></div>
+
 <!-- Nav -->
 <nav>
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo">Amir Bukhari</a>
+    <a href="#hero" class="nav-brand">Amir Bukhari</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#resume">Resume</a></li>
-      <li><a href="#contact" class="nav-cta">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -309,94 +349,76 @@
 
 <!-- Hero -->
 <section id="hero">
-  <div class="hero-content">
-    <span class="hero-badge">Available for opportunities</span>
-    <h1 class="hero-name">Amir Bukhari</h1>
-    <p class="hero-title">Lead Software Engineer at <strong>Rentsync</strong></p>
-    <p class="hero-sub">Building scalable web applications &amp; developer tooling from Oakville, Ontario.</p>
-    <div class="hero-actions">
-      <a href="#portfolio" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-secondary">Get in Touch</a>
-    </div>
+  <div>
+    <h1>AMIR BUKHARI</h1>
+    <h2>Lead Software Engineer</h2>
+    <p>Oakville, Ontario &nbsp;&middot;&nbsp; Rentsync</p>
+    <a href="#portfolio" class="hero-btn">View Projects</a>
   </div>
 </section>
 
 <!-- About -->
-<section id="about">
+<section class="section" id="about">
   <div class="section-inner">
-    <p class="section-label">Who I am</p>
-    <h2 class="section-title">About Me</h2>
+    <h1>About</h1>
     <div class="about-grid">
       <div>
-        <img class="about-photo" src="images/Amir.jpg" alt="Amir Bukhari" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="about-photo-placeholder" style="display:none">👨‍💻</div>
-        <div class="about-location">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Oakville, Ontario, Canada
-        </div>
+        <img class="about-photo" src="images/Amir.jpg" alt="Amir Bukhari">
       </div>
       <div class="about-text">
-        <p>I'm a software engineer with a passion for building clean, performant web applications. I currently serve as a <strong>Lead Software Engineer at Rentsync</strong>, where I architect and build software that powers the Canadian rental industry.</p>
-        <p>My background spans full-stack development, cloud infrastructure, and developer experience. I enjoy working at the intersection of product and engineering — writing code that ships fast and scales reliably.</p>
-        <p>I graduated from Niagara College's Computer Programmer Analyst program and have since worked across startups, research labs, and enterprise environments.</p>
+        <p>Amir Bukhari is a software engineer based in Oakville, Ontario. He's currently a <strong>Lead Software Engineer at Rentsync</strong>, where he architects and ships software powering Canada's rental industry.</p>
+        <p>Amir has a strong passion for building clean, functional software and sharing his creations with the world. His background spans full-stack web development, cloud infrastructure, research tooling, and game dev.</p>
+        <p>He graduated from Niagara College's Computer Programmer Analyst program and has since worked across startups, university research labs, and enterprise environments.</p>
       </div>
     </div>
 
-    <!-- Work history -->
-    <div class="timeline">
-      <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:1.75rem;">Work History</h3>
-
-      <div class="timeline-item">
-        <div class="timeline-dot">🏢</div>
-        <div class="timeline-body">
+    <div class="work-list">
+      <div class="work-item">
+        <span class="work-emoji">&#127962;</span>
+        <div class="work-body">
           <h3>Rentsync</h3>
           <div class="role">Lead Software Engineer</div>
-          <p>Leading engineering efforts on the platform that powers Canada's largest rental marketplace.</p>
+          <p>Architecting and leading development on Canada's largest rental platform.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot">🔬</div>
-        <div class="timeline-body">
-          <h3>Brock University — DNLab</h3>
+      <div class="work-item">
+        <span class="work-emoji">&#128300;</span>
+        <div class="work-body">
+          <h3>Brock University &mdash; DNLab</h3>
           <div class="role">Software Engineer</div>
-          <p>Built research software for the Developmental Neuroscience Laboratory, enabling data collection and analysis for clinical studies.</p>
+          <p>Built research software for the Developmental Neuroscience Laboratory at Brock University.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot">🎓</div>
-        <div class="timeline-body">
-          <h3>Niagara College — Research &amp; Innovation</h3>
+      <div class="work-item">
+        <span class="work-emoji">&#127891;</span>
+        <div class="work-body">
+          <h3>Niagara College &mdash; Research &amp; Innovation</h3>
           <div class="role">Software Engineer</div>
-          <p>Worked on applied research projects within the college's innovation department.</p>
+          <p>Worked on applied research and innovation projects within the college.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot">🌐</div>
-        <div class="timeline-body">
+      <div class="work-item">
+        <span class="work-emoji">&#127760;</span>
+        <div class="work-body">
           <h3>MicroAge</h3>
           <div class="role">Network Analyst &amp; IT Technician</div>
-          <p>Managed networks for enterprise clients and handled hardware servicing including motherboards, graphics cards, and cable management.</p>
+          <p>Managed networks for enterprise clients and handled hardware servicing.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot">🐧</div>
-        <div class="timeline-body">
+      <div class="work-item">
+        <span class="work-emoji">&#128039;</span>
+        <div class="work-body">
           <h3>Plexis Network Solutions</h3>
           <div class="role">Linux Solutions Intern</div>
-          <p>Internship focused on Linux server administration and networking solutions.</p>
+          <p>Linux server administration and networking solutions internship.</p>
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot">📚</div>
-        <div class="timeline-body">
+      <div class="work-item">
+        <span class="work-emoji">&#128218;</span>
+        <div class="work-body">
           <h3>DSBN</h3>
           <div class="role">Teaching Assistant</div>
-          <p>TA for Computer Programming and Computer Engineering courses at the District School Board of Niagara.</p>
+          <p>TA for Computer Programming and Computer Engineering courses.</p>
         </div>
       </div>
     </div>
@@ -404,183 +426,168 @@
 </section>
 
 <!-- Skills -->
-<section id="skills">
+<section class="section" id="skills">
   <div class="section-inner">
-    <p class="section-label">What I work with</p>
-    <h2 class="section-title">Skills &amp; Technologies</h2>
+    <h1>Skills</h1>
     <div class="skills-grid">
-      <div class="skill-card"><img src="images/nodejs-original-wordmark.svg" alt="Node.js" onerror="this.style.display='none'"><span>Node.js</span></div>
-      <div class="skill-card"><img src="images/react-original-wordmark.svg" alt="React" onerror="this.style.display='none'"><span>React</span></div>
-      <div class="skill-card"><img src="images/typescript-plain.svg" alt="TypeScript" onerror="this.style.display='none'"><span>TypeScript</span></div>
-      <div class="skill-card"><img src="images/javascript-plain.svg" alt="JavaScript" onerror="this.style.display='none'"><span>JavaScript</span></div>
-      <div class="skill-card"><img src="images/docker-plain-wordmark.svg" alt="Docker" onerror="this.style.display='none'"><span>Docker</span></div>
-      <div class="skill-card"><img src="images/mongodb-original-wordmark.svg" alt="MongoDB" onerror="this.style.display='none'"><span>MongoDB</span></div>
-      <div class="skill-card"><img src="images/mysql-original-wordmark.svg" alt="MySQL" onerror="this.style.display='none'"><span>MySQL</span></div>
-      <div class="skill-card"><img src="images/python-original-wordmark.svg" alt="Python" onerror="this.style.display='none'"><span>Python</span></div>
-      <div class="skill-card"><img src="images/express-original-wordmark.svg" alt="Express" onerror="this.style.display='none'"><span>Express</span></div>
-      <div class="skill-card"><img src="images/jest-plain.svg" alt="Jest" onerror="this.style.display='none'"><span>Jest</span></div>
-      <div class="skill-card"><img src="images/git-plain-wordmark.svg" alt="Git" onerror="this.style.display='none'"><span>Git</span></div>
-      <div class="skill-card"><img src="images/github-original-wordmark.svg" alt="GitHub" onerror="this.style.display='none'"><span>GitHub</span></div>
-      <div class="skill-card"><img src="images/gitlab-plain-wordmark.svg" alt="GitLab" onerror="this.style.display='none'"><span>GitLab</span></div>
-      <div class="skill-card"><img src="images/linux-original.svg" alt="Linux" onerror="this.style.display='none'"><span>Linux</span></div>
-      <div class="skill-card"><img src="images/dot-net-plain-wordmark.svg" alt=".NET" onerror="this.style.display='none'"><span>.NET</span></div>
-      <div class="skill-card"><img src="images/csharp-plain.svg" alt="C#" onerror="this.style.display='none'"><span>C#</span></div>
-      <div class="skill-card"><img src="images/php-plain.svg" alt="PHP" onerror="this.style.display='none'"><span>PHP</span></div>
-      <div class="skill-card"><img src="images/materialui-plain.svg" alt="MUI" onerror="this.style.display='none'"><span>Material UI</span></div>
-      <div class="skill-card"><img src="images/jira-plain-wordmark.svg" alt="Jira" onerror="this.style.display='none'"><span>Jira</span></div>
-      <div class="skill-card"><img src="images/yarn-original-wordmark.svg" alt="Yarn" onerror="this.style.display='none'"><span>Yarn</span></div>
-      <div class="skill-card"><img src="images/html5-plain-wordmark.svg" alt="HTML5" onerror="this.style.display='none'"><span>HTML5</span></div>
-      <div class="skill-card"><img src="images/css3-plain-wordmark.svg" alt="CSS3" onerror="this.style.display='none'"><span>CSS3</span></div>
-      <div class="skill-card"><img src="images/vscode-original-wordmark.svg" alt="VS Code" onerror="this.style.display='none'"><span>VS Code</span></div>
-      <div class="skill-card"><img src="images/unity-original-wordmark.svg" alt="Unity" onerror="this.style.display='none'"><span>Unity</span></div>
+      <div class="skill-card"><img src="images/nodejs-original-wordmark.svg" alt=""><span>Node.js</span></div>
+      <div class="skill-card"><img src="images/react-original-wordmark.svg" alt=""><span>React</span></div>
+      <div class="skill-card"><img src="images/typescript-plain.svg" alt=""><span>TypeScript</span></div>
+      <div class="skill-card"><img src="images/javascript-plain.svg" alt=""><span>JavaScript</span></div>
+      <div class="skill-card"><img src="images/docker-plain-wordmark.svg" alt=""><span>Docker</span></div>
+      <div class="skill-card"><img src="images/mongodb-original-wordmark.svg" alt=""><span>MongoDB</span></div>
+      <div class="skill-card"><img src="images/mysql-original-wordmark.svg" alt=""><span>MySQL</span></div>
+      <div class="skill-card"><img src="images/python-original-wordmark.svg" alt=""><span>Python</span></div>
+      <div class="skill-card"><img src="images/express-original-wordmark.svg" alt=""><span>Express</span></div>
+      <div class="skill-card"><img src="images/jest-plain.svg" alt=""><span>Jest</span></div>
+      <div class="skill-card"><img src="images/git-plain-wordmark.svg" alt=""><span>Git</span></div>
+      <div class="skill-card"><img src="images/github-original-wordmark.svg" alt=""><span>GitHub</span></div>
+      <div class="skill-card"><img src="images/gitlab-plain-wordmark.svg" alt=""><span>GitLab</span></div>
+      <div class="skill-card"><img src="images/linux-original.svg" alt=""><span>Linux</span></div>
+      <div class="skill-card"><img src="images/dot-net-plain-wordmark.svg" alt=""><span>.NET</span></div>
+      <div class="skill-card"><img src="images/csharp-plain.svg" alt=""><span>C#</span></div>
+      <div class="skill-card"><img src="images/php-plain.svg" alt=""><span>PHP</span></div>
+      <div class="skill-card"><img src="images/materialui-plain.svg" alt=""><span>Material UI</span></div>
+      <div class="skill-card"><img src="images/jira-plain-wordmark.svg" alt=""><span>Jira</span></div>
+      <div class="skill-card"><img src="images/yarn-original-wordmark.svg" alt=""><span>Yarn</span></div>
+      <div class="skill-card"><img src="images/html5-plain-wordmark.svg" alt=""><span>HTML5</span></div>
+      <div class="skill-card"><img src="images/css3-plain-wordmark.svg" alt=""><span>CSS3</span></div>
+      <div class="skill-card"><img src="images/unity-original-wordmark.svg" alt=""><span>Unity</span></div>
+      <div class="skill-card"><img src="images/vscode-original-wordmark.svg" alt=""><span>VS Code</span></div>
     </div>
   </div>
 </section>
 
 <!-- Portfolio -->
-<section id="portfolio">
+<section class="section" id="portfolio">
   <div class="section-inner">
-    <p class="section-label">What I've built</p>
-    <h2 class="section-title">Portfolio</h2>
+    <h1>Portfolio</h1>
     <div class="portfolio-grid">
-
-      <div class="portfolio-card">
-        <img class="portfolio-card-img" src="images/HTA.png" alt="Hamilton Human Trafficking App" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="portfolio-card-img-placeholder" style="display:none">📱</div>
-        <div class="portfolio-card-body">
+      <div class="port-card">
+        <img src="images/HTA.png" alt="Hamilton Human Trafficking App">
+        <div class="port-card-body">
           <h3>Hamilton Human Trafficking App</h3>
-          <p>Mobile app to assist victims and workers in the Hamilton region.</p>
-          <div class="portfolio-tags"><span class="tag">React Native</span></div>
+          <p>React Native</p>
         </div>
       </div>
-
-      <div class="portfolio-card">
-        <img class="portfolio-card-img" src="images/comingSoon.png" alt="Pump Failure System" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="portfolio-card-img-placeholder" style="display:none">🚨</div>
-        <div class="portfolio-card-body">
-          <h3>Pump Failure — Emergency Response System</h3>
-          <p>Real-time monitoring and alerting system for industrial pump failures.</p>
-          <div class="portfolio-tags"><span class="tag">Node.js</span><span class="tag">React</span><span class="tag">React Native</span><span class="tag">MongoDB</span></div>
+      <div class="port-card">
+        <img src="images/comingSoon.png" alt="Pump Failure">
+        <div class="port-card-body">
+          <h3>Pump Failure &mdash; Emergency Response System</h3>
+          <p>Node.js &middot; React &middot; React Native &middot; MongoDB</p>
         </div>
       </div>
-
-      <div class="portfolio-card">
-        <img class="portfolio-card-img" src="images/HPS1.png" alt="Hamilton Program for Schizophrenia" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="portfolio-card-img-placeholder" style="display:none">🏥</div>
-        <div class="portfolio-card-body">
+      <div class="port-card">
+        <img src="images/HPS1.png" alt="Hamilton Program for Schizophrenia">
+        <div class="port-card-body">
           <h3>Hamilton Program for Schizophrenia</h3>
-          <p>Web application for managing patient data and clinical workflows.</p>
-          <div class="portfolio-tags"><span class="tag">ASP.NET</span><span class="tag">C#</span><span class="tag">MVC</span><span class="tag">jQuery</span></div>
+          <p>ASP.NET &middot; C# &middot; MVC &middot; jQuery</p>
         </div>
       </div>
-
-      <div class="portfolio-card">
-        <img class="portfolio-card-img" src="images/livestream.PNG" alt="Live Video Stream" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="portfolio-card-img-placeholder" style="display:none">📡</div>
-        <div class="portfolio-card-body">
+      <div class="port-card">
+        <img src="images/livestream.PNG" alt="Live Video Stream">
+        <div class="port-card-body">
           <h3>Live Video Stream with Chat</h3>
-          <p>Real-time video streaming platform with integrated live chat.</p>
-          <div class="portfolio-tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span></div>
+          <p>PHP &middot; MySQL &middot; JavaScript</p>
         </div>
       </div>
-
-      <div class="portfolio-card">
-        <img class="portfolio-card-img" src="images/Google-Pixel-Maze.png" alt="Maze Game" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="portfolio-card-img-placeholder" style="display:none">🎮</div>
-        <div class="portfolio-card-body">
+      <div class="port-card">
+        <img src="images/Google-Pixel-Maze.png" alt="Maze Game">
+        <div class="port-card-body">
           <h3>Randomly Generated Maze Game</h3>
-          <p>Procedurally generated maze game with path-finding logic.</p>
-          <div class="portfolio-tags"><span class="tag">Unity</span><span class="tag">C#</span></div>
+          <p>Unity &middot; C#</p>
         </div>
       </div>
-
-      <div class="portfolio-card">
-        <img class="portfolio-card-img" src="images/DesignSmart1.jpg" alt="Design Smart" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="portfolio-card-img-placeholder" style="display:none">🏆</div>
-        <div class="portfolio-card-body">
-          <h3>Design Smart Challenge — Winner</h3>
-          <p>Competition-winning web project built under time constraints.</p>
-          <div class="portfolio-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      <div class="port-card">
+        <img src="images/DesignSmart1.jpg" alt="Design Smart">
+        <div class="port-card-body">
+          <h3>Design Smart Challenge Winner</h3>
+          <p>HTML &middot; CSS &middot; JavaScript</p>
         </div>
       </div>
-
-      <div class="portfolio-card">
-        <img class="portfolio-card-img" src="images/Breadfruit1.jpg" alt="Breadfruit Tree Trust" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="portfolio-card-img-placeholder" style="display:none">🌳</div>
-        <div class="portfolio-card-body">
+      <div class="port-card">
+        <img src="images/Breadfruit1.jpg" alt="Breadfruit Tree Trust">
+        <div class="port-card-body">
           <h3>Breadfruit Tree Trust for Pakistan</h3>
-          <p>Charity website for a reforestation initiative in Pakistan.</p>
-          <div class="portfolio-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">jQuery</span></div>
+          <p>HTML &middot; CSS &middot; jQuery</p>
         </div>
       </div>
-
-      <div class="portfolio-card">
-        <img class="portfolio-card-img" src="images/ISSC1.jpg" alt="ISSC" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="portfolio-card-img-placeholder" style="display:none">🕌</div>
-        <div class="portfolio-card-body">
+      <div class="port-card">
+        <img src="images/ISSC1.jpg" alt="ISSC">
+        <div class="port-card-body">
           <h3>Islamic Society of St. Catharines</h3>
-          <p>Community website built with Drupal CMS.</p>
-          <div class="portfolio-tags"><span class="tag">Drupal</span><span class="tag">PHP</span></div>
+          <p>Drupal &middot; PHP</p>
         </div>
       </div>
-
+      <div class="port-card">
+        <img src="images/inhalants.PNG" alt="Inhalants">
+        <div class="port-card-body">
+          <h3>Inhalants.ca</h3>
+          <p>HTML &middot; CSS &middot; jQuery</p>
+        </div>
+      </div>
+      <div class="port-card">
+        <img src="images/NeonTown.PNG" alt="Neon Town">
+        <div class="port-card-body">
+          <h3>Neon Town</h3>
+          <p>HTML &middot; CSS &middot; jQuery</p>
+        </div>
+      </div>
+      <div class="port-card">
+        <img src="images/TreneonGamesSoftware.PNG" alt="Sprite Sheet Generator">
+        <div class="port-card-body">
+          <h3>Treneon Games Sprite Sheet Generator</h3>
+          <p>ActionScript 3.0 &middot; Adobe Animate</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Resume -->
-<section id="resume">
+<section class="section" id="resume">
   <div class="section-inner">
-    <p class="section-label">My background</p>
-    <h2 class="section-title">Resume</h2>
-    <div class="resume-cta-box">
-      <p>Download a copy of my resume or preview it below.</p>
-      <a href="docs/AmirBukhariResume.pdf" class="btn-primary" download>Download Resume (PDF)</a>
-      <div class="resume-embed">
-        <embed src="docs/AmirBukhariResume.pdf" type="application/pdf" width="100%" height="600">
-      </div>
+    <h1>Resume</h1>
+    <div style="text-align:center">
+      <a class="resume-btn" href="docs/AmirBukhariResume.pdf" download>Download Resume</a>
+    </div>
+    <div class="resume-embed">
+      <embed src="docs/AmirBukhariResume.pdf" type="application/pdf" width="100%" height="620">
     </div>
   </div>
 </section>
 
 <!-- Contact -->
-<section id="contact">
-  <div class="section-inner">
-    <p class="section-label">Say hello</p>
-    <h2 class="section-title">Get in Touch</h2>
+<section class="section" id="contact">
+  <div class="section-inner" style="display:flex;flex-direction:column;align-items:center">
+    <h1>Contact</h1>
     <div class="contact-box">
-      <p>I'm always open to interesting projects and conversations. Feel free to reach out directly.</p>
-      <a href="mailto:amirahmedbukhari@gmail.com" class="contact-email">amirahmedbukhari@gmail.com</a>
-      <br>
-      <a href="mailto:amirahmedbukhari@gmail.com" class="btn-primary">Send an Email</a>
+      <h3>amirahmedbukhari@gmail.com</h3>
+      <a href="mailto:amirahmedbukhari@gmail.com" class="contact-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Send an Email
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Built by Amir Bukhari &nbsp;·&nbsp; <a href="https://github.com/amirbukhari" target="_blank" rel="noopener">GitHub</a></p>
+  <p>Amir Bukhari &nbsp;&middot;&nbsp; <a href="https://github.com/amirbukhari" target="_blank" rel="noopener" style="text-decoration:underline">GitHub</a></p>
 </footer>
 
 <script>
-  // Mobile nav toggle
+  // Hide loader once page is ready
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('hidden');
+    setTimeout(() => loader.remove(), 600);
+  });
+
+  // Mobile nav
   const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
+  const links  = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-
-  // Scroll spy — highlight active nav link
-  const sections = document.querySelectorAll('section[id]');
-  const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navAs.forEach(a => a.style.color = '');
-        const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-        if (active) active.style.color = 'var(--text)';
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  sections.forEach(s => observer.observe(s));
 </script>
 
 </body>
